@@ -1,0 +1,33 @@
+server:
+  port: 15000
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/walsn2333/configserver.git
+          username: 16605304818
+          password: Walsn2333
+          default-label: master
+  application:
+    name: "config-server"
+  rabbitmq:
+    stream:
+      host: localhost
+      port: 15672
+      username: guest
+      password: guest
+#暴露bus-refresh节点，通过此节点刷新配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: busrefresh
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: "${spring.cloud.client.ip-address}:${server.port}"
+  client:
+    service-url:
+      defaultZone: "http://eurekaServer18000:18000/eureka/,http://eurekaServer18001:18001/eureka/"

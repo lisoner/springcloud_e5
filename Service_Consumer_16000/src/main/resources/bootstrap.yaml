@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:15000
+      profile: dev
+      label: master
+      name: service_provider_16000
